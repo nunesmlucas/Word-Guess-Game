@@ -62,15 +62,14 @@ document.onkeydown = function (event) {
     console.log(letterArray);
     lettersGuessed = document.getElementById("guessed-letters");
     lettersGuessed.textContent = letterArray.toString().toUpperCase();
-
+//
     for(var l =0; l<randLetters.length; l++){
         if(randLetters[l].match(keyholder)){
-            hangHold[l] == (keyholder);
+            hangHold[l] = (keyholder);
             console.log("RANDLETTER[l]:--> "+randLetters[l] + " -- KEYHOLDER --> "+ keyholder);
-            console.log("HANGHOLD[l]: --->" + hangHold[l]);
-            hangHold[l] == "G";
-            console.log(hangHold[l]);
+            console.log("HANGHOLD[l]: ---> " + hangHold[l]);
         }
+        console.log("UPDATED: -->>" + hangHold);
     }
 };
 
