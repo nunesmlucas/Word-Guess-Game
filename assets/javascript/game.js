@@ -2,7 +2,7 @@
 window.addEventListener("load", function (event) {
     console.log("All resources finished loading!");
     var userText = document.getElementById("user-text");
-    userText.textContent = hangJoin;
+    userText.textContent = (hangJoin);
 });
 
 var artistChoices = ["Coldplay", "Madonna", "Dave Matthews Band", "Mumford and Sons", "Logic", "Conro"];
@@ -47,34 +47,34 @@ var lettersGuessed;
 var keyHolder;
 
 
-// document.onkeyup = function () {
-// if (e.keyCode == 13) {
 document.onkeydown = function (event) {
-    console.log(event);
     keyholder = event.key;
+    letterChecker(keyHolder);
+    replaceStrokes(keyHolder);
+};
+
+function letterChecker(x) {
     if (keyholder.match(letters)) {
         letterArray.push("  " + keyholder);
+        console.log("KEYHOLDER: " + keyholder);
+        console.log(letterArray);
+        lettersGuessed = document.getElementById("guessed-letters");
+        lettersGuessed.textContent = letterArray.toString().toUpperCase();
     }
     else {
         alert("Please enter letters only!");
     }
-    // letterArray.push("  " + event.key);
-    console.log(letterArray);
-    lettersGuessed = document.getElementById("guessed-letters");
-    lettersGuessed.textContent = letterArray.toString().toUpperCase();
-//
-    for(var l =0; l<randLetters.length; l++){
-        if(randLetters[l].match(keyholder)){
+}
+
+function replaceStrokes(x) {
+    for (var l = 0; l < randLetters.length; l++) {
+        if ((randLetters[l].match(keyholder)) && (randLetters[l] = " _ ")) {
             hangHold[l] = (keyholder);
-            console.log("RANDLETTER[l]:--> "+randLetters[l] + " -- KEYHOLDER --> "+ keyholder);
+            console.log("RANDLETTER[l]:--> " + randLetters[l] + " -- KEYHOLDER --> " + keyholder);
             console.log("HANGHOLD[l]: ---> " + hangHold[l]);
         }
         console.log("UPDATED: -->>" + hangHold);
     }
-};
-
-    // }
-// }
-
+}
 
 
