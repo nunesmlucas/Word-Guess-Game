@@ -75,6 +75,9 @@ function replaceStrokes(x) {
         }
         console.log("UPDATED: -->>" + hangHold);
     }
+
+    // HAVING TROUBLE PASSING THIS BACK UP IN ORDER TO UPDATE IN REAL TIME. ------------
+    hangJoin = hangHold;
 }
 
 
