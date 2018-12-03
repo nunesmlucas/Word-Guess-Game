@@ -1,10 +1,3 @@
-
-window.addEventListener("load", function (event) {
-    console.log("All resources finished loading!");
-    var userText = document.getElementById("user-text");
-    userText.textContent = (hangJoin);
-});
-
 var artistChoices = ["Coldplay", "Madonna", "Dave Matthews Band", "Mumford and Sons", "Logic", "Conro"];
 console.log(artistChoices);
 
@@ -31,6 +24,10 @@ for (var i = 0; i < randLetters.length; i++) {
 console.log(hangHold);
 console.log("HANGHOLD JOIN HERE: " + hangHold.join(""));
 var hangJoin = hangHold.join("");
+
+
+var userText = document.getElementById("user-text");
+userText.textContent = hangJoin;
 
 //Increases Wins value by 1. 
 // document.onkeyup = function () {
@@ -74,6 +71,7 @@ function replaceStrokes(x) {
             console.log("HANGHOLD[l]: ---> " + hangHold[l]);
         }
         console.log("UPDATED: -->>" + hangHold);
+        userText.textContent = hangHold;
     }
 
     // HAVING TROUBLE PASSING THIS BACK UP IN ORDER TO UPDATE IN REAL TIME. ------------
