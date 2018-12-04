@@ -1,4 +1,4 @@
-var artistChoices = ["Coldplay", "Madonna", "Dave Matthews Band", "Mumford and Sons", "Logic", "Conro"];
+var artistChoices = ["coldplay", "madonna", "dave matthews band", "mumford and sons", "logic", "conro"];
 console.log(artistChoices);
 
 var winsAdded = 0;
@@ -8,9 +8,6 @@ console.log(randChoice);
 
 
 var randLetters = randChoice.split("");
-for (var i = 0; i <randLetters.length; i++){
-    randLetters[i].toLocaleLowerCase;
-}
 console.log("RANDOM LETTERS: " + randLetters);
 
 
@@ -43,45 +40,60 @@ userText.textContent = hangJoin;
 
 var letters = /^[a-zA-Z]+$/;
 var letterArray = [];
-var letterArray2 = [];
 var lettersGuessed;
 var keyHolder;
+var isDuplicate = false;
+
 
 
 document.onkeydown = function (event) {
-    keyholder = event.key;
-    letterChecker(keyHolder);
-    replaceStrokes(keyHolder);
-    // duplicateKeys();
+    keyholder = event.key.toLowerCase();
+    resetFunction();
+    letterChecker();
+    // checkDuplicate();
+    replaceStrokes();
+
 };
 
-// function duplicateKeys(){
-//     for (var i = 0; i <letterArray2.length; i ++){
+function resetFunction() {
+    document.getElementById("announcement").innerHTML = "";
+}
 
-//     }
-// }
+function checkDuplicate() {
+    for (var i = 0; i < letterArray.length; i++) {
+        console.log("INSIDE CHECK DUP FOR LOOP " + keyholder);
+        console.log("INSIDE CHECK DUP FOR LOOP LETTERARRAY[i]: " + letterArray);
+
+        if (letterArray[i] == (" " + keyholder)) {
+            console.log("INSIDE FOR/IF LOOP CHECK DUP: " + letterArray[i]);
+            // alert("this is a duplicate: " + letterArray[i]);
+            console.log(letterArray);
+            letterArray.splice(i);
+            break;
+        }
+    }
+}
 
 function letterChecker() {
-
-    // for (var i = 0; i < letterArray[i].length; i++) {
-
-    if (keyholder.match(letters)) {
-        letterArray.push("  " + keyholder);
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
+        checkDuplicate();
+        letterArray.push(" " + keyholder);
         console.log("KEYHOLDER: " + keyholder);
         console.log(letterArray);
         lettersGuessed = document.getElementById("guessed-letters");
         lettersGuessed.textContent = letterArray.toString().toUpperCase();
     }
     else {
-        alert("Please enter letters only!");
+        announcementText = document.getElementById("announcement");
+        announcementText.textContent = ("Please enter a valid letter.");
+
     }
 }
-// }
 
 function replaceStrokes() {
     for (var l = 0; l < randLetters.length; l++) {
         if ((randLetters[l].match(keyholder)) && (randLetters[l] = " _ ")) {
-            hangHold[l] = (" " + keyholder);
+            hangHold[l] = (" " + keyholder.toUpperCase());
             console.log("RANDLETTER[l]:--> " + randLetters[l] + " -- KEYHOLDER --> " + keyholder);
             console.log("HANGHOLD[l]: ---> " + hangHold[l]);
         }
