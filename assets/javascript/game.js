@@ -25,24 +25,16 @@ console.log(hangHold);
 console.log("HANGHOLD JOIN HERE: " + hangHold.join(""));
 var hangJoin = hangHold.join("");
 
-
 var userText = document.getElementById("user-text");
 userText.textContent = hangJoin;
-
-//Increases Wins value by 1. 
-// document.onkeyup = function () {
-//     console.log(event);
-//     winsAdded++;
-//     console.log(winsAdded);
-//     var winsScore = document.getElementById("wins");
-//     winsScore.textContent = winsAdded;
-// };
 
 var letters = /^[a-zA-Z]+$/;
 var letterArray = [];
 var lettersGuessed;
 var keyHolder;
 var isDuplicate = false;
+var winWord;
+var lowerWinWord;
 
 
 
@@ -52,8 +44,16 @@ document.onkeydown = function (event) {
     letterChecker();
     // checkDuplicate();
     replaceStrokes();
-
+    checkWin();
 };
+
+function checkWin() {
+    if (lowerWinWord == randChoice) {
+        winsAdded++;
+    }
+    var winField = document.getElementById("wins");
+    winField.textContent = winsAdded;
+}
 
 function resetFunction() {
     document.getElementById("announcement").innerHTML = "";
@@ -86,20 +86,22 @@ function letterChecker() {
     else {
         announcementText = document.getElementById("announcement");
         announcementText.textContent = ("Please enter a valid letter.");
-
     }
 }
 
 function replaceStrokes() {
     for (var l = 0; l < randLetters.length; l++) {
-        if ((randLetters[l].match(keyholder)) && (randLetters[l] = " _ ")) {
-            hangHold[l] = (" " + keyholder.toUpperCase());
+        if ((randLetters[l].match(keyholder)) && (randLetters[l] = "_")) {
+            hangHold[l] = (keyholder.toUpperCase());
             console.log("RANDLETTER[l]:--> " + randLetters[l] + " -- KEYHOLDER --> " + keyholder);
             console.log("HANGHOLD[l]: ---> " + hangHold[l]);
         }
         console.log("UPDATED: -->>" + hangHold);
-        userText.textContent = hangHold;
+        userText.textContent = hangHold.join("");
+        winWord = hangHold.join("");
+        lowerWinWord = winWord.toLowerCase();
     }
+    // checkWin(lowerWinWord);
 }
 
 
