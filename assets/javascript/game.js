@@ -8,6 +8,9 @@ console.log(randChoice);
 
 
 var randLetters = randChoice.split("");
+for (var i = 0; i <randLetters.length; i++){
+    randLetters[i].toLocaleLowerCase;
+}
 console.log("RANDOM LETTERS: " + randLetters);
 
 
@@ -38,8 +41,9 @@ userText.textContent = hangJoin;
 //     winsScore.textContent = winsAdded;
 // };
 
-var letters = /^[A-Za-z]+$/;
+var letters = /^[a-zA-Z]+$/;
 var letterArray = [];
+var letterArray2 = [];
 var lettersGuessed;
 var keyHolder;
 
@@ -48,9 +52,19 @@ document.onkeydown = function (event) {
     keyholder = event.key;
     letterChecker(keyHolder);
     replaceStrokes(keyHolder);
+    // duplicateKeys();
 };
 
-function letterChecker(x) {
+// function duplicateKeys(){
+//     for (var i = 0; i <letterArray2.length; i ++){
+
+//     }
+// }
+
+function letterChecker() {
+
+    // for (var i = 0; i < letterArray[i].length; i++) {
+
     if (keyholder.match(letters)) {
         letterArray.push("  " + keyholder);
         console.log("KEYHOLDER: " + keyholder);
@@ -62,20 +76,18 @@ function letterChecker(x) {
         alert("Please enter letters only!");
     }
 }
+// }
 
-function replaceStrokes(x) {
+function replaceStrokes() {
     for (var l = 0; l < randLetters.length; l++) {
         if ((randLetters[l].match(keyholder)) && (randLetters[l] = " _ ")) {
-            hangHold[l] = (keyholder);
+            hangHold[l] = (" " + keyholder);
             console.log("RANDLETTER[l]:--> " + randLetters[l] + " -- KEYHOLDER --> " + keyholder);
             console.log("HANGHOLD[l]: ---> " + hangHold[l]);
         }
         console.log("UPDATED: -->>" + hangHold);
         userText.textContent = hangHold;
     }
-
-    // HAVING TROUBLE PASSING THIS BACK UP IN ORDER TO UPDATE IN REAL TIME. ------------
-    hangJoin = hangHold;
 }
 
 
