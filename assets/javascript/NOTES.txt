@@ -5,8 +5,6 @@ Countdown for the amount of guesses remaining:
     <span id=""> NUMBER </span>
 Add counter and deduct by one as a show for the user. 
 
-Adjust the history button to show at least the most recent win if not three.
-
 Prioritize CSS. Need something basic for now. 
 
 Finally, add some songs to artist if possible. 

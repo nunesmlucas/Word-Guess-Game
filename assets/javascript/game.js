@@ -12,14 +12,10 @@ window.onload = function () {
     var winWord;
     var lowerWinWord;
     var historyArray = [];
-    historyArray.length = 3;
-    historyText = document.getElementById("history-text");
-    historyText.textContent = ("Winning word: " + historyArray[0]);
-
-
 
 
     play = function () {
+        console.log("HISTORY ARRARY OUTSIDE VARIABLE: " + historyArray);
 
         artistChoices = ["coldplay", "madonna", "dave matthews band", "mumford and sons", "logic", "conro"];
         randChoice = artistChoices[Math.floor(Math.random() * artistChoices.length)];
@@ -49,7 +45,7 @@ window.onload = function () {
             replaceStrokes();
             checkWin();
         };
-        
+
         function letterChecker() {
             if (event.keyCode >= 65 && event.keyCode <= 90) {
                 checkDuplicate();
@@ -69,9 +65,6 @@ window.onload = function () {
         }
         function checkDuplicate() {
             for (var i = 0; i < letterArray.length; i++) {
-                console.log("INSIDE CHECK DUP FOR LOOP " + keyholder);
-                console.log("INSIDE CHECK DUP FOR LOOP LETTERARRAY[i]: " + letterArray);
-
                 if (letterArray[i] == (" " + keyholder)) {
                     console.log("INSIDE FOR/IF LOOP CHECK DUP: " + letterArray[i]);
                     console.log(letterArray);
@@ -96,14 +89,13 @@ window.onload = function () {
         }
         function showHistory() {
             historyArray.push(winWord);
-            console.log("HISTORY ARRARY AFTER WIN: " + historyArray[0]);
-
+            var historyText = document.getElementById("history-text");
+            historyText.textContent = ("Winning word: " + historyArray);
         }
         function checkWin() {
             if (lowerWinWord === randChoice) {
                 winsAdded++;
                 console.log("WINS ADDED IN CHECK WIN AFTER :" + winsAdded);
-                // historyArray.push(winWord);
                 showHistory();
                 resetGame();
             }
