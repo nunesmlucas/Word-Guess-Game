@@ -11,6 +11,10 @@ window.onload = function () {
     var lettersGuessed;
     var winWord;
     var lowerWinWord;
+    var historyArray = [];
+    historyArray.length = 3;
+    historyText = document.getElementById("history-text");
+    historyText.textContent = ("Winning word: " + historyArray[0]);
 
 
 
@@ -20,8 +24,6 @@ window.onload = function () {
         artistChoices = ["coldplay", "madonna", "dave matthews band", "mumford and sons", "logic", "conro"];
         randChoice = artistChoices[Math.floor(Math.random() * artistChoices.length)];
         randLetters = randChoice.split("");
-        winsAdded = 0;
-
 
         var hangHold = [];
         for (var i = 0; i < randLetters.length; i++) {
@@ -42,22 +44,12 @@ window.onload = function () {
 
         document.onkeydown = function (event) {
             keyholder = event.key.toLowerCase();
-            resetFunction();
+            resetAnnouncement();
             letterChecker();
             replaceStrokes();
             checkWin();
-
         };
-
-        function checkWin() {
-            if (lowerWinWord === randChoice) {
-                winsAdded++;
-                play();
-            }
-            var winField = document.getElementById("wins");
-            winField.textContent = winsAdded;
-        };
-
+        
         function letterChecker() {
             if (event.keyCode >= 65 && event.keyCode <= 90) {
                 checkDuplicate();
@@ -72,7 +64,7 @@ window.onload = function () {
                 announcementText.textContent = ("Please enter a valid letter.");
             }
         }
-        function resetFunction() {
+        function resetAnnouncement() {
             document.getElementById("announcement").innerHTML = "";
         }
         function checkDuplicate() {
@@ -101,7 +93,43 @@ window.onload = function () {
                 winWord = hangHold.join("");
                 lowerWinWord = winWord.toLowerCase();
             }
+        }
+        function showHistory() {
+            historyArray.push(winWord);
+            console.log("HISTORY ARRARY AFTER WIN: " + historyArray[0]);
+
+        }
+        function checkWin() {
+            if (lowerWinWord === randChoice) {
+                winsAdded++;
+                console.log("WINS ADDED IN CHECK WIN AFTER :" + winsAdded);
+                // historyArray.push(winWord);
+                showHistory();
+                resetGame();
+            }
+            else if (letterArray.length == 15) {
+                alert("Sorry you have guessed 15 times and have lost");
+                resetGame();
+            }
+            var winField = document.getElementById("wins");
+            winField.textContent = winsAdded;
         };
+
+        function resetGame() {
+            artistChoices = [];
+            randChoice = "";
+            randLetters = "";
+            hangHold = [];
+            // console.log(hangHold);
+            // console.log("HANGHOLD JOIN HERE: " + hangHold.join(""));
+            var hangJoin = "";
+            var userText = document.getElementById("user-text");
+            userText.textContent = hangJoin;
+            lettersGuessed.textContent = "";
+            letterArray = [];
+
+            play();
+        }
     };
     play();
 };
