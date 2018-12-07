@@ -1,12 +1,9 @@
 window.onload = function () {
 
     var artistChoices;
-    // console.log(artistChoices);
     var winsAdded = 0;
     var randChoice;
-    // console.log(randChoice);
     var randLetters;
-    // console.log("RANDOM LETTERS: " + randLetters);
     var letterArray = [];
     var lettersGuessed;
     var winWord;
@@ -44,6 +41,10 @@ window.onload = function () {
             letterChecker();
             replaceStrokes();
             checkWin();
+        };
+        document.getElementById("buttonRestart").onclick = function () {
+            checkWin();
+            resetGame();
         };
 
         function letterChecker() {
@@ -90,30 +91,29 @@ window.onload = function () {
         function showHistory() {
             historyArray.push(winWord);
             var historyText = document.getElementById("history-text");
-            historyText.textContent = ("Winning word: " + historyArray);
+            historyText.textContent = " " + historyArray;
         }
         function checkWin() {
             if (lowerWinWord === randChoice) {
                 winsAdded++;
-                console.log("WINS ADDED IN CHECK WIN AFTER :" + winsAdded);
-                showHistory();
+                // console.log("WINS ADDED IN CHECK WIN AFTER :" + winsAdded);
                 resetGame();
+                showHistory();
             }
             else if (letterArray.length == 15) {
-                alert("Sorry you have guessed 15 times and have lost");
+                alert("Sorry you have guessed 15 different letters and have lost!");
                 resetGame();
             }
             var winField = document.getElementById("wins");
             winField.textContent = winsAdded;
         };
 
+
         function resetGame() {
             artistChoices = [];
             randChoice = "";
             randLetters = "";
             hangHold = [];
-            // console.log(hangHold);
-            // console.log("HANGHOLD JOIN HERE: " + hangHold.join(""));
             var hangJoin = "";
             var userText = document.getElementById("user-text");
             userText.textContent = hangJoin;

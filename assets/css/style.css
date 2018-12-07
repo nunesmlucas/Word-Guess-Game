@@ -1,44 +1,76 @@
 body {
     background-image:url("../images/musicBackground.jpg");
+    background-attachment: fixed;
     background-size: 100% auto;
     color: white;
+    height: 1000px;
 }
 
 div {  
     text-align: left;
 
 }
-#game{
+#mainContainer{
     padding-top: 120px;
-    padding-left: 40px;
-    float: left;
+    padding-left: 10px;
+    /* float: left; */
 }
 #winsDiv{
     position: relative;
-    float: right;
-    text-align: right;
+
 }
 div h2{
     font-size: 250%;
+    text-decoration: underline;
+
 }
 div h3{
     font-size: 250%;
 }
 #artist-id{
-    float: left;
     padding-top: 40px;
-    padding-left: 60px;
+    padding-left: 17px;
 }
 #user-text{
-    letter-spacing: 8px;
+    letter-spacing: 10px;
     padding-left: 20px;
 }
 #guessed-letters{
-    padding-top: 30px;
-    clear: both;
-    float: left;
+    background: rgba(25, 25, 25, .8);
+    padding-left: 20px;
+    font-size: 100%;
 }
 #artist-background{
     background: rgba(25, 25, 25, .8);
 
 }
+#guessed-background{
+    margin-top: 30px;
+    padding: 10px;
+    background: rgba(25, 25, 25, .8);
+
+}
+#announcement{
+    color:red;
+    font-weight: 800;
+    letter-spacing: 2px;
+    background: rgba(25, 25, 25, .85);
+}
+#history-text{
+    background: rgba(25, 25, 25, .85);
+    font-weight: 400;
+}
+#winning-words{
+    background: rgba(25, 25, 25, .9);
+    margin-top: 20px;
+    padding: 10px;
+    font-weight: 600;
+}
+#num-attempts{
+    font-size: 150%;
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
