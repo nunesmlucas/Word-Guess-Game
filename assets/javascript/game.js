@@ -9,6 +9,8 @@ window.onload = function () {
     var winWord;
     var lowerWinWord;
     var historyArray = [];
+    var counter = 15;
+    var attempsToGo;
 
 
     play = function () {
@@ -37,6 +39,7 @@ window.onload = function () {
 
         document.onkeydown = function (event) {
             keyholder = event.key.toLowerCase();
+            counter -= 1;
             resetAnnouncement();
             letterChecker();
             replaceStrokes();
@@ -51,10 +54,14 @@ window.onload = function () {
             if (event.keyCode >= 65 && event.keyCode <= 90) {
                 checkDuplicate();
                 letterArray.push(" " + keyholder);
-                console.log("KEYHOLDER: " + keyholder);
-                console.log(letterArray);
+                // console.log("KEYHOLDER: " + keyholder);
+                // console.log(letterArray);
+                console.log("COUNTER IN LETTER CHECK FOR LOOP: " + counter);
                 lettersGuessed = document.getElementById("guessed-letters");
                 lettersGuessed.textContent = letterArray.toString().toUpperCase();
+
+                attempsToGo = document.getElementById("attemptsLeft");
+                attempsToGo.textContent = counter;
             }
             else {
                 announcementText = document.getElementById("announcement");
@@ -78,9 +85,8 @@ window.onload = function () {
             for (var l = 0; l < randLetters.length; l++) {
                 if ((randLetters[l].match(keyholder)) && (randLetters[l] = "_")) {
                     hangHold[l] = (keyholder.toUpperCase());
-
-                    console.log("RANDLETTER[l]:--> " + randLetters[l] + " -- KEYHOLDER --> " + keyholder);
-                    console.log("HANGHOLD[l]: ---> " + hangHold[l]);
+                    // console.log("RANDLETTER[l]:--> " + randLetters[l] + " -- KEYHOLDER --> " + keyholder);
+                    // console.log("HANGHOLD[l]: ---> " + hangHold[l]);
                 }
                 console.log("UPDATED: -->>" + hangHold);
                 userText.textContent = hangHold.join("");
@@ -89,9 +95,9 @@ window.onload = function () {
             }
         }
         function showHistory() {
-            historyArray.push(winWord);
+            historyArray.push(" " + winWord);
             var historyText = document.getElementById("history-text");
-            historyText.textContent = " " + historyArray;
+            historyText.textContent = historyArray;
         }
         function checkWin() {
             if (lowerWinWord === randChoice) {
@@ -100,10 +106,14 @@ window.onload = function () {
                 resetGame();
                 showHistory();
             }
-            else if (letterArray.length == 15) {
+            else if(counter == 0){
                 alert("Sorry you have guessed 15 different letters and have lost!");
                 resetGame();
             }
+            // else if (letterArray.length == 15) {
+            //     alert("Sorry you have guessed 15 different letters and have lost!");
+            //     resetGame();
+            // }
             var winField = document.getElementById("wins");
             winField.textContent = winsAdded;
         };
@@ -119,6 +129,9 @@ window.onload = function () {
             userText.textContent = hangJoin;
             lettersGuessed.textContent = "";
             letterArray = [];
+            counter = 15;
+            attempsToGo = document.getElementById("attemptsLeft");
+            attempsToGo.textContent = counter;
 
             play();
         }
